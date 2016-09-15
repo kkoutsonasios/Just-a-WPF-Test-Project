@@ -11,32 +11,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace TestWPFApplicationForFun
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Boss.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Boss : Window
     {
-        public MainWindow()
+        private ObservableCollection<employee> EmployeeList;
+
+        public Boss()
         {
             InitializeComponent();
-        }
-
-        
-        private ObservableCollection<string> StringList;
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
             try
             {
-                textBox.Text = "Hello World of GitHub!";
-
-                StringList.Add(string.Format("{0} at {1}", textBox.Text, DateTime.Now.ToShortTimeString()));
-
+                EmployeeList = new ObservableCollection<employee>();
+                listView.ItemsSource = EmployeeList;
             }
             catch (Exception ex)
             {
@@ -44,13 +36,14 @@ namespace TestWPFApplicationForFun
             }
         }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                StringList = new ObservableCollection<string>();
-
-                c.ItemsSource = StringList;
+                int salary = 0;
+                if (!Int32.TryParse(SalaryTxtBox.Text, out salary))
+                    throw new Exception("ARE YOU NUTS?");
+                EmployeeList.Add(new employee(NameTxtBox.Text, salary));
             }
             catch (Exception ex)
             {
