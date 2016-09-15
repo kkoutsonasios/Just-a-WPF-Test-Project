@@ -11,29 +11,36 @@ namespace TestWPFApplicationForFun
     {
         public static void ShowMessage(object obj)
         {
-
-            string Caption = string.Empty;
-            string Message = string.Empty;
-
-            Type ObjType = obj.GetType();
-
-            if (ObjType == typeof(Exception))
+            try
             {
-                Caption = "Error!";
-                Message = ((Exception)obj).Message;
+                string Caption = string.Empty;
+                string Message = string.Empty;
+
+                Type ObjType = obj.GetType();
+
+                if (ObjType == typeof(Exception))
+                {
+                    Caption = "Error!";
+                    Message = ((Exception)obj).Message;
+                }
+                else if (ObjType == typeof(string))
+                {
+                    Caption = "Message";
+                    Message = (string)obj;
+                }
+                else
+                {
+                    Caption = "Message!";
+                    Message = obj.ToString();
+                }
+
+                MessageBox.Show(Message, Caption);
             }
-            else if (ObjType == typeof(string))
+            catch (Exception ex)
             {
-                Caption = "Message";
-                Message = (string)obj;
-            }
-            else
-            {
-                Caption = "Message!";
-                Message = obj.ToString();
-            }
-            
-            MessageBox.Show(Message, Caption);
+                //Yeap! dangerus recursion
+                ShowMessage(ex);
+            }         
             
         }
     }
