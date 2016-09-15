@@ -1,40 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TestWPFApplicationForFun
 {
-    internal class employee : Person
+    public class employee : Person, Nagging, INotifyPropertyChanged
     {
+        
+
         public employee(string Name, int Salary = 0) : base(Name, Salary)
         {
+                        
         }
                 
-        private string AboutLife
+        public string AboutLife
         {
             get {
 
                 int CaseSalary = (this.Salary / 10000);
+                string Result = string.Empty;
 
                 switch (CaseSalary)
                 {
                     case -1:
-                        return "Are you kidding me?";
+                        Result = "Are you kidding me?";
+                        break;
                     case 0:
-                        return "No money, No honey";
+                        Result = "No money, No honey";
+                        break;
                     case 1:
-                        return "I am a programmer, I don't have life...";
+                        Result = "I am a programmer, I don't have life...";
+                        break;
                     case 2:
-                        return "I am ok...";
+                        Result = "I am ok...";
+                        break;
                     case 3:
-                        return "I love my job!";
+                        Result = "I love my job!";
+                        break;
                     case 4:
-                        return "HURREY!!!!";
+                        Result = "HURREY!!!!";
+                        break;
                     default:
-                        return "Nah";
+                        Result = "Check out my new Porsche!!!";
+                        break;
                 }
+                return Result;
             }
             set { value = "Nah";}
         }
@@ -44,10 +57,22 @@ namespace TestWPFApplicationForFun
             return AboutLife;
         }
 
-        public string GetARaise(int Amount = 1500)
+        public void GetARaise(int Amount = 1500)
         {
             this.Salary += Amount;
-            return "Thanks Boss!";
+            RaisePropertyChangedEvent("Salary");
+            RaisePropertyChangedEvent("AboutLife");
+            Tools.ShowMessage("Thanks Boss!");
+            
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void RaisePropertyChangedEvent(string propertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

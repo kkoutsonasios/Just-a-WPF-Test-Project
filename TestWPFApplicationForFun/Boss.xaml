@@ -6,17 +6,21 @@
         xmlns:local="clr-namespace:TestWPFApplicationForFun"
         mc:Ignorable="d"
         Title="Boss" Height="473.297" Width="693.188">
+    <Window.DataContext>
+        <local:SomethingLikeViewModelButItIsNot/>
+    </Window.DataContext>
+    
     <Grid>
         <GroupBox x:Name="groupBox" Header="" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="145" Width="282">
             <StackPanel>
                 <Label x:Name="NameLbl" Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="41"/>
                 <TextBox x:Name="NameTxtBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" />
                 <Label x:Name="SalaryLbl" Content="Salary:" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="41"/>
-                <TextBox x:Name="SalaryTxtBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="255"/>
+                <TextBox x:Name="SalaryTxtBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" KeyDown="SalaryTxtBox_KeyDown"/>
                 <Button x:Name="AddBtn" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="71" Click="AddBtn_Click"/>
             </StackPanel>
         </GroupBox>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="423" Margin="287,10,0,0" VerticalAlignment="Top" Width="388">
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="423" Margin="287,10,0,0" VerticalAlignment="Top" Width="388" ItemsSource="{Binding Path=EmployeeList}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -24,6 +28,9 @@
                         <TextBlock x:Name="NameTxtBlk" Text="{Binding Name}"/>
                         <Label Content="Salary:"/>
                         <TextBlock x:Name="SalaryTxtBlk" Text="{Binding Salary}"/>
+                        <Label Content="How you doing?"/>
+                        <TextBlock Text="{Binding AboutLife}"/>
+                        <Button Click="GetARaise_Click"  Content="Get a raise!"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

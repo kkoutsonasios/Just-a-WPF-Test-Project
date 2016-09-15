@@ -20,19 +20,18 @@ namespace TestWPFApplicationForFun
     /// </summary>
     public partial class Boss : Window
     {
-        private ObservableCollection<employee> EmployeeList;
+        private SomethingLikeViewModelButItIsNot DtCntx;
 
         public Boss()
         {
             InitializeComponent();
             try
             {
-                EmployeeList = new ObservableCollection<employee>();
-                listView.ItemsSource = EmployeeList;
+                DtCntx = (SomethingLikeViewModelButItIsNot)this.DataContext;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Tools.ShowMessage(ex);
             }
         }
 
@@ -43,11 +42,38 @@ namespace TestWPFApplicationForFun
                 int salary = 0;
                 if (!Int32.TryParse(SalaryTxtBox.Text, out salary))
                     throw new Exception("ARE YOU NUTS?");
-                EmployeeList.Add(new employee(NameTxtBox.Text, salary));
+                if (NameTxtBox.Text == string.Empty)
+                    throw new Exception("You don't have a name?");
+                
+                DtCntx.EmployeeList.Add(new employee(NameTxtBox.Text, salary));
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Tools.ShowMessage(ex);
+            }
+        }
+
+        private void GetARaise_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+               ((employee)((System.Windows.Controls.Button)e.OriginalSource).DataContext).GetARaise();  
+            }
+            catch (Exception ex)
+            {
+                Tools.ShowMessage(ex);
+            }
+        }
+
+        private void SalaryTxtBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                Tools.ShowMessage(ex);
             }
         }
     }

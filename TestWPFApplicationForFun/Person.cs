@@ -9,7 +9,7 @@ namespace TestWPFApplicationForFun
     /// <summary>
     /// Common class
     /// </summary>
-    internal abstract class Person
+    public abstract class Person
     {
         /// <summary>
         /// Just a constructor
@@ -50,4 +50,10 @@ namespace TestWPFApplicationForFun
             private set { this._name = value; }
         }
     }
+}
+
+
+public interface Nagging
+{
+    string HowUDoing();
 }
