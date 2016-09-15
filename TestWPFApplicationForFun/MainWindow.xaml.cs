@@ -16,6 +16,10 @@ using System.Windows.Shapes;
 
 namespace TestWPFApplicationForFun
 {
+    
+
+    internal 
+    
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -26,6 +30,7 @@ namespace TestWPFApplicationForFun
             InitializeComponent();
         }
 
+        
         private ObservableCollection<string> StringList;
 
         private void button_Click(object sender, RoutedEventArgs e)
