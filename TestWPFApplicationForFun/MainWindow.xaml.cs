@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,11 +26,30 @@ namespace TestWPFApplicationForFun
             InitializeComponent();
         }
 
+        private ObservableCollection<string> StringList;
+
         private void button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 textBox.Text = "Hello World of GitHub!";
+
+                StringList.Add(string.Format("{0} at {1}", textBox.Text, DateTime.Now.ToShortTimeString()));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                StringList = new ObservableCollection<string>();
+
+                c.ItemsSource = StringList;
             }
             catch (Exception ex)
             {
