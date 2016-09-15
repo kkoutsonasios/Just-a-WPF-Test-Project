@@ -24,5 +24,17 @@ namespace TestWPFApplicationForFun
         {
             InitializeComponent();
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                textBox.Text = "Hello World of GitHub!";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
