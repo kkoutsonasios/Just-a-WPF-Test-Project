@@ -11,6 +11,8 @@ namespace TestWPFApplicationForFun
     {
         public ObservableCollection<employee> EmployeeList { get; set; }
 
+        public employee JustStupidThings { get; set; }
+
         public SomethingLikeViewModelButItIsNot()
         {
             EmployeeList = new ObservableCollection<employee>();

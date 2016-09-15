@@ -13,7 +13,7 @@ namespace TestWPFApplicationForFun
 
         public employee(string Name, int Salary = 0) : base(Name, Salary)
         {
-                        
+            ThatsEnought = false;
         }
                 
         public string AboutLife
@@ -57,12 +57,18 @@ namespace TestWPFApplicationForFun
             return AboutLife;
         }
 
+        private bool ThatsEnought { get; set; }
+
         public void GetARaise(int Amount = 1500)
         {
             this.Salary += Amount;
             RaisePropertyChangedEvent("Salary");
             RaisePropertyChangedEvent("AboutLife");
-            Tools.ShowMessage("Thanks Boss!");
+            if (!ThatsEnought)
+            {
+                Tools.ShowMessage("Thanks Boss!");
+                ThatsEnought = true;
+            }
             
         }
 
@@ -74,5 +80,8 @@ namespace TestWPFApplicationForFun
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        
+        public static string Message { get { return "nah"; } set { } }
     }
 }

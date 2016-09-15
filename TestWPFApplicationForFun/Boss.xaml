@@ -13,9 +13,9 @@
     <Grid>
         <GroupBox x:Name="groupBox" Header="" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="145" Width="282">
             <StackPanel>
-                <Label x:Name="NameLbl" Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="41"/>
+                <Label x:Name="NameLbl" Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="255"/>
                 <TextBox x:Name="NameTxtBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" />
-                <Label x:Name="SalaryLbl" Content="Salary:" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="41"/>
+                <Label x:Name="SalaryLbl" Content="Annual Salary:" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="255"/>
                 <TextBox x:Name="SalaryTxtBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" KeyDown="SalaryTxtBox_KeyDown"/>
                 <Button x:Name="AddBtn" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="71" Click="AddBtn_Click"/>
             </StackPanel>
@@ -26,7 +26,7 @@
                     <StackPanel>
                         <Label Content="Name:"/>
                         <TextBlock x:Name="NameTxtBlk" Text="{Binding Name}"/>
-                        <Label Content="Salary:"/>
+                        <Label Content="Annual Salary:"/>
                         <TextBlock x:Name="SalaryTxtBlk" Text="{Binding Salary}"/>
                         <Label Content="How you doing?"/>
                         <TextBlock Text="{Binding AboutLife}"/>
@@ -35,5 +35,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Label x:Name="label" Content="Give me raise many times to see how I am doing!" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Height="92" Width="272"/>
     </Grid>
 </Window>

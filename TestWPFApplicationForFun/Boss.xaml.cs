@@ -69,7 +69,8 @@ namespace TestWPFApplicationForFun
         {
             try
             {
-
+                if (e.Key == Key.Enter)
+                    AddBtn_Click(this, e);
             }
             catch (Exception ex)
             {

@@ -56,4 +56,5 @@ namespace TestWPFApplicationForFun
 public interface Nagging
 {
     string HowUDoing();
+    string AboutLife { get; set; }
 }
